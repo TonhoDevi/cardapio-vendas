@@ -18,13 +18,13 @@
                 *ngFor="let cafe of cafes"
                 [class.featured]="cafe.destaque"
             >
-                <div *ngIf="cafe.destaque" class="featured-badge">DESTAQUE</div>
 
+                <div *ngIf="cafe.destaque" class="featured-badge">DESTAQUE</div>
                 <div class="item-header">
                     <h3 class="item-name">{{ cafe.nome }}</h3>
                     <span class="item-price">{{ cafe.preco }}</span>
                 </div>
-
+                
                 <p class="item-description">
                     {{ cafe.descricao }}
                 </p>
@@ -38,11 +38,13 @@
                         {{ tag }}
                     </span>
                 </div>
+                <button class="btn-add" (click)="adicionarAoPedido(cafe)">
+                    Adicionar ao pedido
+                </button>
             </div>
         </div>
             
     </section>
-
     <!-- Doces e Salgados -->
     <section class="menu-section">
         <div class="section-header">
@@ -86,6 +88,19 @@
         <p>Compre 2 cafés e ganhe 1 doce à sua escolha.</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
             Válido de segunda a sexta, das 14h às 17h
+        </p>
+    </div>
+    <div class="pedido-resumo" *ngIf="pedido.length > 0">
+        <h3>🧾 Seu Pedido</h3>
+
+        <ul>
+            <li *ngFor="let item of pedido">
+            {{ item.nome }} — R$ {{ item.preco }}
+            </li>
+        </ul>
+
+        <p class="pedido-total">
+            Total: <strong>R$ {{ total }}</strong>
         </p>
     </div>
 

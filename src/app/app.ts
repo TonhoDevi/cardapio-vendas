@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Cardapio } from './pages/cardapio/cardapio';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [Cardapio],
+  template: `<app-cardapio></app-cardapio>`
 })
-export class App {
-  protected readonly title = signal('cardapio-vendas');
-}
+export class App {}

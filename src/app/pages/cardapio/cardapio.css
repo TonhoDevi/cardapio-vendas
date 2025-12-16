@@ -196,3 +196,55 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.btn-add {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--coffee);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+  background: var(--caramel);
+  transform: translateY(-2px);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+.pedido-resumo {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pedido-resumo h3 {
+  margin-bottom: 1rem;
+  color: var(--coffee);
+}
+
+.pedido-resumo ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.pedido-resumo li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--latte);
+}
+
+.pedido-total {
+  font-size: 1.1rem;
+  text-align: right;
+}
