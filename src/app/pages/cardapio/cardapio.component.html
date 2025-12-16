@@ -1,0 +1,106 @@
+<div class="container">
+    <header>
+        <h1 class="logo-script">Café Aroma</h1>
+        <p class="tagline">Experiências que aquecem a alma</p>
+        <div class="divider"></div>
+    </header>
+
+    <!-- Cafés Especiais -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title">Cafés Especiais</h2>
+            <p class="section-subtitle">Grãos selecionados, torra artesanal</p>
+        </div>
+
+        <div class="menu-grid">
+            <div 
+                class="menu-item"
+                *ngFor="let cafe of cafes"
+                [class.featured]="cafe.destaque"
+            >
+                <div *ngIf="cafe.destaque" class="featured-badge">DESTAQUE</div>
+
+                <div class="item-header">
+                    <h3 class="item-name">{{ cafe.nome }}</h3>
+                    <span class="item-price">{{ cafe.preco }}</span>
+                </div>
+
+                <p class="item-description">
+                    {{ cafe.descricao }}
+                </p>
+
+                <div class="item-tags">
+                    <span 
+                        class="tag"
+                        *ngFor="let tag of cafe.tags"
+                        [class.hot]="tag === 'MAIS VENDIDO'"
+                    >
+                        {{ tag }}
+                    </span>
+                </div>
+            </div>
+        </div>
+            
+    </section>
+
+    <!-- Doces e Salgados -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2 class="section-title">Doces & Salgados</h2>
+            <p class="section-subtitle">Feitos frescos diariamente</p>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Croissant Francês</h3>
+                    <span class="item-price">R$ 9,00</span>
+                </div>
+                <p class="item-description">
+                    Massa folhada crocante e amanteigada.
+                </p>
+                <div class="item-tags">
+                    <span class="tag">Tradicional</span>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Brownie de Chocolate</h3>
+                    <span class="item-price">R$ 12,00</span>
+                </div>
+                <p class="item-description">
+                    Brownie úmido com chocolate 70% cacau.
+                </p>
+                <div class="item-tags">
+                    <span class="tag hot">FAVORITO</span>
+                    <span class="tag">Caseiro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promoções -->
+    <div class="special-offers">
+        <h3>Promoções Especiais</h3>
+        <p>Compre 2 cafés e ganhe 1 doce à sua escolha.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+            Válido de segunda a sexta, das 14h às 17h
+        </p>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <p>Rua das Flores, 123 - Recife, PE</p>
+            <p>(81) 3333-4444</p>
+            <p>Segunda a Sábado: 7h às 20h</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <p style="font-size: 0.9rem; color: var(--accent); margin-top: 1rem;">
+            Feito com cuidado e dedicação
+        </p>
+    </footer>
+</div>
