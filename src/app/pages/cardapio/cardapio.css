@@ -74,12 +74,13 @@ header {
 /* Grid */
 .menu-grid {
     display: grid;
+    background: var(--accent);
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
 .menu-item {
-    background: var(--white);
+    background: linear-gradient(35deg, rgb(128, 128, 150), rgb(241, 241, 119));
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(74, 52, 40, 0.08);
@@ -89,22 +90,22 @@ header {
 
 .menu-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(74, 52, 40, 0.15);
+    box-shadow: 0 15px 40px rgba(233, 82, 0, 0.15);
 }
 
 /* Featured */
 .menu-item.featured {
-    background: linear-gradient(135deg, var(--caramel), var(--accent));
+    background: linear-gradient(35deg, rgb(128, 128, 150), rgb(241, 241, 119));
     color: var(--white);
 }
 
 .menu-item.featured .item-name,
 .menu-item.featured .item-price {
-    color: var(--white);
+    color: var(--dark-chocolate);
 }
 
 .menu-item.featured .item-description {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .featured-badge {
@@ -223,7 +224,7 @@ footer {
 .pedido-resumo {
   margin-top: 3rem;
   padding: 2rem;
-  background: var(--white);
+  background: linear-gradient(35deg, rgb(128, 128, 150), rgb(241, 241, 119));
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }

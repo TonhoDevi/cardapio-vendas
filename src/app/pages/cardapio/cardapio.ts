@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PRODUTOS } from '../../data/produtos.mock';
+import { Produto } from '../../core/models/produto.model';
+import { ItemPedido } from '../../core/models/itemPedido.model';
 
 @Component({
   selector: 'app-cardapio',
@@ -10,45 +13,58 @@ import { CommonModule } from '@angular/common';
 })
 export class Cardapio {
 
-  cafes = [
-    {
-      nome: 'Espresso Supremo',
-      preco: 'R$ 12,00',
-      precoNumero: 12,
-      descricao: 'Blend exclusivo de grãos arábicos da Colômbia e Etiópia, com notas de chocolate amargo e caramelo.',
-      tags: ['MAIS VENDIDO', 'Intenso'],
-      destaque: true
-    },
-    {
-      nome: 'Cappuccino Tradicional',
-      preco: 'R$ 14,00',
-      precoNumero: 14,
-      descricao: 'Espresso cremoso com leite vaporizado e espuma aveludada, finalizado com cacau belga.',
-      tags: ['Clássico', 'Cremoso'],
-      destaque: false
-    },
-    {
-      nome: 'Latte Caramelo',
-      preco: 'R$ 16,00',
-      precoNumero: 16,
-      descricao: 'Espresso suave com leite vaporizado e calda de caramelo artesanal.',
-      tags: ['Doce', 'Premium'],
-      destaque: false
-    }
-  ];
-  pedido: any[] = [];
+  produtos: Produto[] = PRODUTOS;
+  cafes = PRODUTOS.filter(item => item.categoria === 'cafe');
+  salgados = PRODUTOS.filter(p => p.categoria === 'salgado');
+
+  pedido: ItemPedido[] = [];
+
+
+
 
   total = 0;
 
-  adicionarAoPedido(cafe: any) {
-    this.pedido.push(cafe);
-    this.total += cafe.precoNumero;
+adicionarAoPedido(produto: Produto) {
+  const itemExistente = this.pedido.find(
+    item => item.produto.id === produto.id
+  );
+
+  if (itemExistente) {
+    itemExistente.quantidade += 1;
+  } else {
+    this.pedido.push({
+      produto,
+      quantidade: 1
+    });
   }
-  removerDoPedido(index: number) {
+
+  this.calcularTotal();
+}
+
+
+
+removerDoPedido(index: number) {
   const item = this.pedido[index];
-  this.total -= item.preco;
-  this.pedido.splice(index, 1);
+
+  if (!item) return;
+
+  if (item.quantidade > 1) {
+    item.quantidade -= 1;
+  } else {
+    this.pedido.splice(index, 1);
   }
+
+  this.calcularTotal();
+}
+
+
+calcularTotal() {
+  this.total = this.pedido.reduce(
+    (soma, item) => soma + item.produto.preco * item.quantidade,
+    0
+  );
+}
+
 
 
 }

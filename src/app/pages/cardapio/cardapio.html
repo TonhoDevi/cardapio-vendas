@@ -22,7 +22,8 @@
                 <div *ngIf="cafe.destaque" class="featured-badge">DESTAQUE</div>
                 <div class="item-header">
                     <h3 class="item-name">{{ cafe.nome }}</h3>
-                    <span class="item-price">{{ cafe.preco }}</span>
+                    <!-- Formata o preço para o padrão brasileiro com 2 casas decimais -->
+                    <span class="item-price">R$ {{ cafe.preco | number:'1.2-2' }}</span>
                 </div>
                 
                 <p class="item-description">
@@ -53,31 +54,29 @@
         </div>
 
         <div class="menu-grid">
-            <div class="menu-item">
+            <div 
+                class="menu-item"
+                *ngFor="let salgado of salgados"
+            >
                 <div class="item-header">
-                    <h3 class="item-name">Croissant Francês</h3>
-                    <span class="item-price">R$ 9,00</span>
+                    <h3 class="item-name">{{ salgado.nome }}</h3>
+                    <span class="item-price">R$ {{ salgado.preco | number:'1.2-2' }}</span>
                 </div>
                 <p class="item-description">
-                    Massa folhada crocante e amanteigada.
+                    {{ salgado.descricao }}
                 </p>
                 <div class="item-tags">
-                    <span class="tag">Tradicional</span>
+                    <span 
+                        class="tag"
+                        *ngFor="let tag of salgado.tags"
+                        [class.hot]="tag === 'MAIS VENDIDO'"
+                    >
+                        {{ tag }}
+                    </span>
                 </div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-header">
-                    <h3 class="item-name">Brownie de Chocolate</h3>
-                    <span class="item-price">R$ 12,00</span>
-                </div>
-                <p class="item-description">
-                    Brownie úmido com chocolate 70% cacau.
-                </p>
-                <div class="item-tags">
-                    <span class="tag hot">FAVORITO</span>
-                    <span class="tag">Caseiro</span>
-                </div>
+            <button class="btn-add" (click)="adicionarAoPedido(salgado)">
+                Adicionar ao pedido
+            </button>
             </div>
         </div>
     </section>
@@ -95,7 +94,9 @@
 
         <ul>
         <li *ngFor="let item of pedido; let i = index">
-            {{ item.nome }} — R$ {{ item.preco }}
+            {{ item.produto.nome }}
+            × {{ item.quantidade }}
+            — R$ {{ item.produto.preco * item.quantidade | number:'1.2-2' }}
 
             <button class="btn-remove" (click)="removerDoPedido(i)">
             ❌
@@ -103,8 +104,9 @@
         </li>
         </ul>
 
+
         <p class="pedido-total">
-            Total: <strong>R$ {{ total }}</strong>
+            Total: <strong>R$ {{ total | number:'1.2-2' }}</strong>
         </p>
     </div>
 
