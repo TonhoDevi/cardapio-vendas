@@ -248,3 +248,16 @@ footer {
   font-size: 1.1rem;
   text-align: right;
 }
+.btn-remove {
+  margin-left: 1rem;
+  background: transparent;
+  border: none;
+  color: #c0392b;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-remove:hover {
+  transform: scale(1.2);
+}

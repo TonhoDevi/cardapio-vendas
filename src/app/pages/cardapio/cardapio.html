@@ -94,9 +94,13 @@
         <h3>🧾 Seu Pedido</h3>
 
         <ul>
-            <li *ngFor="let item of pedido">
+        <li *ngFor="let item of pedido; let i = index">
             {{ item.nome }} — R$ {{ item.preco }}
-            </li>
+
+            <button class="btn-remove" (click)="removerDoPedido(i)">
+            ❌
+            </button>
+        </li>
         </ul>
 
         <p class="pedido-total">

@@ -44,6 +44,11 @@ export class Cardapio {
     this.pedido.push(cafe);
     this.total += cafe.precoNumero;
   }
+  removerDoPedido(index: number) {
+  const item = this.pedido[index];
+  this.total -= item.preco;
+  this.pedido.splice(index, 1);
+  }
 
 
 }
